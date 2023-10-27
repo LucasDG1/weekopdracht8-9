@@ -25,7 +25,7 @@ stopBar = 0.01;
 
 
 function preload() {
-
+// Alle images
   img = loadImage('AssetsImages/bergen.jpg');
   imgNatural = loadImage('AssetsImages/natural.jpg');
   imgHappy = loadImage('AssetsImages/happy.jpg');
@@ -35,6 +35,7 @@ function preload() {
   imgToys = loadImage('AssetsImages/toys.jpg');
   imgBear = loadImage('AssetsImages/bear.jpg');
   imgDoll = loadImage('AssetsImages/doll.jpg');
+  // Coins Save
   if (getItem('coins')) coins = getItem('coins')
 
 }
@@ -43,6 +44,7 @@ function preload() {
 function setup() {
   createCanvas(800, 600);
   barWidth = width;
+  // Alle Buttons
   let startButton = createButton('Start');
   startButton.size(120, 50);
   startButton.position(450, 100, 120, 50);
@@ -89,7 +91,7 @@ function setup() {
   shopItem3.size(100);
 
 
-
+// Foto van Toys
   if (imgBear) barWidth += 100.1;
   if (imgToys) barWidth += 8.1;
   if (imgDoll) barWidth += 0.1;
@@ -101,7 +103,7 @@ function draw() {
   textSize(18)
   fill(0, 0, 0)
   text("Coins:", 10, 20);
-
+// happines bar
   if (barWidth < 1) {
     textSize(100)
     fill(255, 0, 0)
@@ -109,11 +111,11 @@ function draw() {
   }
 
   textSize(20)
-
+// locatie van de images
   image(imgBear, 30, 450, 100, 100)
   image(imgDoll, 150, 450, 100, 100)
   image(imgToys, 270, 450, 100, 100)
-
+// foto's voor de bar
   if (barWidth > 600) image(imgHappy, 120, 200, 180, 180)
   if (barWidth < 600) image(imgNatural, 120, 200, 180, 180)
   if (barWidth < 200) image(imgAngry, 120, 200, 180, 180)
@@ -125,10 +127,12 @@ function draw() {
 
 
   fill(0, 150, 255);
+  //locatie van de bar
   rect(75, height / 5 - barHeight / 1, barWidth / 3, barHeight);
+
   let min = floor(m_Timer / 60)
   let sec = m_Timer - (min * 60)
-
+//Timer 
   if (timerOn == true && m_Timer > 1) {
     barStop = false;
     m_Timer -= deltaTime / 1000
@@ -140,6 +144,7 @@ function draw() {
     }  
     storeItem('coins', coins)
   }
+  //Text van de coins
   fill(250, 0, 0)
   fill(0)
   text('Coins:', 450, 20)
@@ -159,18 +164,20 @@ function draw() {
   text("Happiness", 160, 90)
   text(min + ":" + (floor(sec).toString().padStart(2, '0')), 590, 55);
 }
-
+//Timer
 function startTimer() {
   timerOn = true;
   startTime = Date.now();
   image(imgNatural, 120, 200, 180, 180)
 
 }
+//StopTimer
 function stopTimer() {
   timerOn = false;
   barStop = true;
 
 }
+//Buttons
 function addTime5button() {
   m_Timer += 300;
 }
@@ -183,6 +190,7 @@ function addTime25button() {
 function addTime0button() {
   m_Timer = 0;
 }
+//Button van Toys
 function addToys() {
   if (imgToys && barWidth < 850) {
     barWidth += 8.1;
