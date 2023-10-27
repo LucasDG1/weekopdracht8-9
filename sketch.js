@@ -134,7 +134,7 @@ function draw() {
     m_Timer -= deltaTime / 1000
     image(imgConcentrate, 120, 200, 180, 180)
     timePassed = Math.floor((Date.now() - startTime) / 1000)
-    if (timePassed % 1 == 0 && timePassed != lastPassed) {
+    if (timePassed % 60 == 0 && timePassed != lastPassed) {
       coins++
       lastPassed = timePassed
     }  
